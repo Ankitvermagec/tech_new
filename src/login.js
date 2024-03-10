@@ -3,34 +3,37 @@ import social from "./img/social.png";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-
 import React, { useState } from 'react';
 
-
-
-function Login() {
-   
-   
+function Login() 
+{   
+    console.log("Login")
     const navigate = useNavigate();
     const [data,setData]=useState({email:"",password:""})
 
-const handleChange=(e)=>{
-    e.preventDefault()
-     setData((prev)=>({...prev,[e.target.name]:e.target.value}))
+    const handleChange=(e)=>
+    {
+        e.preventDefault()
+        console.log("handleChange");
+        setData((prev)=>({...prev,[e.target.name]:e.target.value}))
         console.log(data)
     }
 
-    const handleLogin= async ()=>{
-        try{
+    const handleLogin = async (e)=>
+    {
+        e.preventDefault()
+        console.log("handleLogin");
+        try
+        {
             await axios.post("http://localhost:3500/login",data)
-            navigate("/")
-        }catch(err){
+            navigate("/stock")
+        }
+        catch(err)
+        {
             console.log(err)
         }
     }
 
-   
-   
     return (
         <>
             <section className='sec_a'>
@@ -56,7 +59,6 @@ const handleChange=(e)=>{
                         </div>
                     </div>
                 </div>
-
             </section>
         </>
     )
